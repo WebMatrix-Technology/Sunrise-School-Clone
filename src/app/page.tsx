@@ -7,28 +7,28 @@ import { ArrowRight, School, Laptop, Award, Shield, CheckCircle, ChevronLeft, Ch
 export default function HomePage() {
   const carouselItems = [
     {
-      title: "Annual Day Celebrations",
-      subtitle: "Nourishing Creativity & Expressions",
+      title: "Annual Day",
+      subtitle: "",
       image: "https://www.sunriseinternationalschool.co.in/static/images/carousel/1.jpg"
     },
     {
-      title: "Holistic Development",
-      subtitle: "Year on Year growth for every student",
+      title: "Annual Day",
+      subtitle: "",
       image: "https://www.sunriseinternationalschool.co.in/static/images/carousel/2.jpg"
     },
     {
-      title: "Modern School Infrastructure",
-      subtitle: "A State-Of-The-Art Hilltop Campus",
+      title: "Infrastructure",
+      subtitle: "",
       image: "https://www.sunriseinternationalschool.co.in/static/images/carousel/3.jpg"
     },
     {
-      title: "Annual Day Performances",
-      subtitle: "Shaping The Future Leaders",
+      title: "Annual Day",
+      subtitle: "",
       image: "https://www.sunriseinternationalschool.co.in/static/images/carousel/4.jpg"
     },
     {
-      title: "Classroom Tech & Projection Screens",
-      subtitle: "Smart classrooms for modern learners",
+      title: "Annual Day",
+      subtitle: "",
       image: "https://www.sunriseinternationalschool.co.in/static/images/carousel/5.jpg"
     }
   ];
@@ -114,9 +114,11 @@ export default function HomePage() {
             
             {/* Caption */}
             <div className="relative z-20 p-8 md:p-12 w-full text-white">
-              <span className="text-amber-400 font-display font-semibold text-xs md:text-sm tracking-widest uppercase block mb-2">
-                {item.subtitle}
-              </span>
+              {item.subtitle && (
+                <span className="text-amber-400 font-display font-semibold text-xs md:text-sm tracking-widest uppercase block mb-2">
+                  {item.subtitle}
+                </span>
+              )}
               <h2 className="font-display font-extrabold text-3xl md:text-5xl mb-4 leading-tight">
                 {item.title}
               </h2>

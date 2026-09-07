@@ -1,171 +1,331 @@
 "use client";
 
-import React, { useState } from "react";
-import { Eye, Headphones, FileText, Activity, Users, Settings, Cpu, ShieldAlert, Award } from "lucide-react";
+import React from "react";
+import Link from "next/link";
+import { Home } from "lucide-react";
+
+interface VarkItem {
+  title: string;
+  iconUrl: string;
+}
+
+interface FacultyItem {
+  title: string;
+  iconUrl: string;
+  description: string;
+}
+
+interface CardItem {
+  title: string;
+  iconUrl: string;
+  description: string;
+}
 
 export default function WhySunrisePage() {
-  const [activeVark, setActiveVark] = useState<"visual" | "auditory" | "reading" | "kinesthetic">("visual");
+  const varkItems: VarkItem[] = [
+    {
+      title: "Visual",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/visual.png",
+    },
+    {
+      title: "Auditory",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/auditory.png",
+    },
+    {
+      title: "Reading",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/reading.png",
+    },
+    {
+      title: "Kinesthetic",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/kinesthetic.png",
+    },
+  ];
 
-  const varkItems = {
-    visual: {
-      title: "Visual Learning",
-      icon: Eye,
-      color: "text-blue-500 bg-blue-50",
-      border: "border-blue-200",
-      description: "Visual learners remember things they see better than things they hear. We use projectors, process diagrams, video animations, and digital visualizers to create rich mental maps of complex lessons, stimulating visual memory directly."
+  const facultyItems: FacultyItem[] = [
+    {
+      title: "Recruitment",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/recruitment.png",
+      description: "We strive to get the best teachers in our school",
     },
-    auditory: {
-      title: "Auditory learning",
-      icon: Headphones,
-      color: "text-amber-500 bg-amber-50",
-      border: "border-amber-200",
-      description: "Focusing on interactive explanations, group discussions, listening exercises, and active teacher-student voice loops. This allows students who grasp concepts better via listening to follow the syllabus naturally and comfortably."
+    {
+      title: "Our Teacher Training Program",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/teacher-training.png",
+      description: "All the teachers have to undergo rigorous training",
     },
-    reading: {
-      title: "Reading / Writing",
-      icon: FileText,
-      color: "text-emerald-500 bg-emerald-50",
-      border: "border-emerald-200",
-      description: "Focusing on worksheets, digital library content, comprehensive textbook notes, and essay writing. We encourage students to synthesize what they learn into written notes, building exceptional language and analytical writing capabilities."
-    },
-    kinesthetic: {
-      title: "Kinesthetic (Experiential)",
-      icon: Activity,
-      color: "text-rose-500 bg-rose-50",
-      border: "border-rose-200",
-      description: "Kinesthetic learning enables students to gain knowledge by experiencing it. By conducting lab experiments, physical modeling, sports lab training, and active field trips, students absorb concepts through tactile interactions."
-    }
-  };
+  ];
 
-  const curriculumPoints = [
+  const environmentItems: CardItem[] = [
     {
-      title: "The Modern Curriculum",
-      desc: "At SIS, we ensure that the quality of education is of the highest standard. All our lesson plans, syllabus blueprints, and examinations are set by our extremely experienced Trust members, ensuring consistency and academic excellence."
+      title: "School Infrastructure",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/school.png",
+      description: "Students should be comfortable while learning",
     },
     {
-      title: "Ideal Faculty Training",
-      desc: "We understand that only when a child is comfortable and having fun while learning, the child is able to grasp subjects efficiently. We run a rigorous recruitment process followed by our regular Teacher Training Program, making sure the right teacher is in place for the right job at all times."
+      title: "Classroom Technology",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/classroom.png",
+      description: "We provide access to technology from a young age",
     },
     {
-      title: "Modern Environment",
-      desc: "Each child develops differently. At SIS, we provide our young learners with the ideal hilltop learning environment where they are not limited by anything. This includes comfortable, clean classroom infrastructure combined with smart boards and Edutech resources."
-    }
+      title: "Edutech",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/edutech.png",
+      description: "Encouraging the effective use of Technology in Education",
+    },
+  ];
+
+  const skillsItems: CardItem[] = [
+    {
+      title: "The Sports Lab",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/sports-trophy.png",
+      description: "A combination of traditional and new age sport are offered to the students",
+    },
+    {
+      title: "Holistic Development",
+      iconUrl: "https://sunriseinternationalschool.co.in/static/images/icons/development.png",
+      description: "Students can choose from a wide variety of holistic hobby classes",
+    },
   ];
 
   return (
     <div className="space-y-16">
-      {/* 1. HEADER */}
-      <section className="space-y-4">
-        <span className="text-amber-500 font-display font-bold text-xs uppercase tracking-widest block">
-          Our Philosophy
-        </span>
-        <h1 className="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight">
-          Why Sunrise School?
-        </h1>
-        <p className="text-slate-500 text-sm md:text-base max-w-2xl leading-relaxed">
-          We lay down a deep and strong foundation Year on Year for each student, enabling them to soar at greater heights and achieve limitless growth.
+      {/* HERO BANNER SECTION */}
+      <section className="relative h-60 rounded-3xl overflow-hidden shadow-premium-lg">
+        <img
+          src="https://www.sunriseinternationalschool.co.in/static/images/carousel/banner.jpg"
+          alt="Why Sunrise Banner"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-950/60 flex flex-col justify-end p-8 md:p-12 text-white">
+          <h1 className="font-display font-black text-2xl md:text-4xl mb-3 tracking-tight">
+            Why Sunrise International School
+          </h1>
+          <ol className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+            <li>
+              <Link href="/" className="hover:text-amber-500 flex items-center gap-1">
+                <Home size={14} />
+              </Link>
+            </li>
+            <li>/</li>
+            <li className="text-white">Why Us</li>
+          </ol>
+        </div>
+      </section>
+
+      {/* INTRODUCTION BLOCK */}
+      <section className="bg-white border border-slate-100 p-6 md:p-8 rounded-3xl shadow-premium">
+        <p className="text-slate-700 leading-relaxed text-sm md:text-base text-center max-w-4xl mx-auto italic font-medium">
+          We lay down a deep and strong foundation <span className="text-amber-600 font-bold uppercase">YEAR on YEAR</span> for
+          each student that enables them to soar at greater heights.
+          At Sunrise International School your child develops the
+          potential and the will to achieve limitless <span className="text-amber-600 font-bold uppercase">GROWTH</span>. We push
+          our students to think collectively for the betterment of the
+          self and those around, which makes the <span className="text-amber-600 font-bold uppercase">SUNRISE</span> family a self
+          sustaining yet ever growing community of problem solvers.
         </p>
       </section>
 
-      {/* 2. THE V.A.R.K METHODOLOGY */}
-      <section className="bg-white border border-slate-100 rounded-3xl p-8 md:p-10 shadow-premium space-y-8">
-        <div className="space-y-2">
-          <span className="text-amber-500 font-semibold text-xs tracking-wider uppercase block">Methodology</span>
-          <h2 className="font-display font-bold text-2xl text-slate-900">The V.A.R.K Teaching Model</h2>
-          <p className="text-slate-500 text-sm max-w-2xl leading-relaxed">
-            Our vision has led us to adopt a V.A.R.K based teaching methodology that focuses on four distinctively inter-related learning mechanisms to stimulate the child's mind at a deep level.
+      {/* V.A.R.K TEACHING MODEL */}
+      <section className="space-y-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          {/* Left Grid: V.A.R.K Elements */}
+          <div className="lg:col-span-6 order-2 lg:order-1">
+            <div className="grid grid-cols-2 gap-4">
+              {varkItems.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm text-center flex flex-col items-center group hover:shadow-premium transition-all"
+                >
+                  <div className="w-14 h-14 rounded-full bg-amber-500/10 flex items-center justify-center mb-3">
+                    <img 
+                      src={item.iconUrl} 
+                      alt={item.title} 
+                      className="w-8 h-8 object-contain"
+                    />
+                  </div>
+                  <h5 className="font-display font-bold text-sm text-slate-900">
+                    {item.title}
+                  </h5>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right text description */}
+          <div className="lg:col-span-6 space-y-4 order-1 lg:order-2">
+            <span className="text-amber-500 font-semibold text-xs tracking-wider uppercase block">Methodology</span>
+            <h2 className="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight">
+              A Modern Approach
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+              Our vision has led us to adopt a V.A.R.K based teaching
+              methodology that focuses on 4 distinctively inter-related
+              learning mechanisms. Our teaching model enables us to
+              stimulate the brainchild at a deep rooted level.
+            </p>
+            <p className="text-slate-800 text-sm md:text-base leading-relaxed font-bold border-l-4 border-amber-500 pl-4 bg-slate-50 py-3 rounded-r-xl">
+              Visual learners will be able to remember things they see
+              better than the things they hear. Similarly, kinesthetics
+              enables students to gain knowledge by experiencing it.
+            </p>
+          </div>
+        </div>
+
+        {/* VARK Pie Chart centered */}
+        <div className="flex justify-center pt-4">
+          <div className="w-full max-w-[650px] rounded-3xl overflow-hidden shadow-premium border border-slate-100 bg-white p-4">
+            <img
+              src="https://sunriseinternationalschool.co.in/static/images/why-choose-us-pie.png"
+              alt="V.A.R.K. Pie Chart"
+              className="w-full h-auto object-contain"
+            />
+          </div>
+        </div>
+      </section>
+
+      <hr className="border-slate-200" />
+
+      {/* THE MODERN CURRICULUM */}
+      <section className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-premium text-center space-y-4">
+        <h2 className="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight">
+          The Modern Curriculum
+        </h2>
+        <p className="text-slate-600 text-sm md:text-base max-w-3xl mx-auto leading-relaxed">
+          At SIS, we ensure that the quality of education is of the
+          highest quality in our School. All our Lesson plans and
+          exams are set by our extremely experienced Trust members.
+        </p>
+      </section>
+
+      <hr className="border-slate-200" />
+
+      {/* THE RIGHT FACULTY */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        {/* Left explanation */}
+        <div className="lg:col-span-6 space-y-4">
+          <span className="text-amber-500 font-semibold text-xs tracking-wider uppercase block">Core Quality</span>
+          <h2 className="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight">
+            The Right Faculty
+          </h2>
+          <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+            At Sunrise International School, we take our teaching
+            seriously and believe that the most important aspect of a
+            school is the quality of their faculty. We understand that
+            only when a child is comfortable and having fun while
+            learning, the child is able to grasp the subject much more
+            efficiently. We make sure it is the right person for the
+            right job at all times. Hence we employ a two-pronged
+            approach to get best teachers for our students.
           </p>
         </div>
 
-        {/* Tab triggers */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {(Object.keys(varkItems) as Array<keyof typeof varkItems>).map((key) => {
-            const item = varkItems[key];
-            const Icon = item.icon;
-            const isSelected = activeVark === key;
-            return (
-              <button
-                key={key}
-                onClick={() => setActiveVark(key)}
-                className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center gap-2 font-display font-bold text-sm ${
-                  isSelected 
-                    ? "bg-amber-500 border-amber-500 text-slate-950 shadow-md"
-                    : "bg-slate-50 hover:bg-slate-100 border-slate-100 text-slate-700"
-                }`}
-              >
-                <Icon size={22} className={isSelected ? "text-slate-950" : "text-slate-500"} />
-                <span>{item.title}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Tab Content Display */}
-        <div className={`border p-6 md:p-8 rounded-2xl flex flex-col md:flex-row gap-6 items-center bg-slate-50/50 ${varkItems[activeVark].border}`}>
-          <div className={`p-4 rounded-full ${varkItems[activeVark].color} shrink-0`}>
-            {React.createElement(varkItems[activeVark].icon, { size: 36 })}
-          </div>
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="font-display font-bold text-lg text-slate-950">{varkItems[activeVark].title}</h3>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-3xl">{varkItems[activeVark].description}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. MODERN APPROACH DETAIL */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {curriculumPoints.map((pt, idx) => (
-          <div key={idx} className="bg-white border border-slate-100 p-6 rounded-2xl shadow-premium space-y-3">
-            <h3 className="font-display font-bold text-lg text-slate-900">{pt.title}</h3>
-            <p className="text-slate-600 text-sm leading-relaxed">{pt.desc}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* 4. SPORTS LAB & HOLISTIC SKILLS */}
-      <section className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-premium-lg border border-slate-800 grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <span className="text-amber-400 font-display font-bold text-xs uppercase tracking-widest block">
-              Beyond Academics
-            </span>
-            <h2 className="font-display font-extrabold text-2xl md:text-3xl text-white">
-              The Sports Lab & Holistic Growth
-            </h2>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              We understand that all work and no play makes our young learners stifled. Our extracurricular activities are designed to build health, active thinking, and focus.
-            </p>
-          </div>
-
+        {/* Right Recruitment / Teacher training grid */}
+        <div className="lg:col-span-6">
           <div className="space-y-4">
-            <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-800/60">
-              <h4 className="font-display font-bold text-base text-amber-400 mb-2">The Sports Lab</h4>
-              <p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-                A unique combination of traditional and new age sports is offered to the students to support physical coordination, discipline, and stamina.
-              </p>
-            </div>
-            <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-800/60">
-              <h4 className="font-display font-bold text-base text-amber-400 mb-2">Holistic Development</h4>
-              <p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-                Students choose from a wide variety of hobby and soft-skill courses (classical dance, keyboard instruments, cursive writing, etc.) to discover hidden potential.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-2xl overflow-hidden h-[340px] relative shadow-lg">
-          <img 
-            src="https://www.sunriseinternationalschool.co.in/static/images/carousel/2.jpg" 
-            alt="Sports Day Celebrations" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
-          <div className="absolute bottom-4 left-4 text-white">
-            <span className="font-display font-semibold text-xs text-amber-400 uppercase tracking-wider block">Physical Wellness</span>
-            <span className="font-display font-bold text-base block mt-0.5">Campus Co-curriculars</span>
+            {facultyItems.map((item, idx) => (
+              <div 
+                key={idx} 
+                className="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm flex items-start gap-4 hover:shadow-premium transition-all"
+              >
+                <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0">
+                  <img 
+                    src={item.iconUrl} 
+                    alt={item.title} 
+                    className="w-6 h-6 object-contain"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <h4 className="font-display font-bold text-sm md:text-base text-slate-900">
+                    {item.title}
+                  </h4>
+                  <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      <hr className="border-slate-200" />
+
+      {/* THE MODERN ENVIRONMENT */}
+      <section className="space-y-8">
+        <div className="text-center space-y-2">
+          <span className="text-amber-500 font-display font-bold text-xs uppercase tracking-widest block">
+            Academics Space
+          </span>
+          <h2 className="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight">
+            The Modern Environment
+          </h2>
+          <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
+            Each child develops differently. At SIS, we understand this perfectly and provide our young learners with the ideal learning environment where they are not limited by anything in their endeavours to learn.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {environmentItems.map((item, idx) => (
+            <div 
+              key={idx} 
+              className="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm text-center flex flex-col items-center hover:shadow-premium transition-all group"
+            >
+              <div className="w-14 h-14 rounded-full bg-amber-500/10 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                <img 
+                  src={item.iconUrl} 
+                  alt={item.title} 
+                  className="w-8 h-8 object-contain"
+                />
+              </div>
+              <h4 className="font-display font-bold text-sm md:text-base text-slate-900 mb-2">
+                {item.title}
+              </h4>
+              <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <hr className="border-slate-200" />
+
+      {/* THE MODERN SKILLS */}
+      <section className="space-y-8">
+        <div className="text-center space-y-2">
+          <span className="text-amber-500 font-display font-bold text-xs uppercase tracking-widest block">
+            Extracurricular
+          </span>
+          <h2 className="font-display font-black text-2xl md:text-3xl text-slate-900 tracking-tight">
+            The Modern Skills
+          </h2>
+          <p className="text-slate-500 text-sm md:text-base max-w-2xl mx-auto">
+            We understand that all work and no play makes our young learners stifled and our extracurricular activities are aimed at addressing this very factor of school life.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {skillsItems.map((item, idx) => (
+            <div 
+              key={idx} 
+              className="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm text-center flex flex-col items-center hover:shadow-premium transition-all group"
+            >
+              <div className="w-14 h-14 rounded-full bg-amber-500/10 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                <img 
+                  src={item.iconUrl} 
+                  alt={item.title} 
+                  className="w-8 h-8 object-contain"
+                />
+              </div>
+              <h4 className="font-display font-bold text-sm md:text-base text-slate-900 mb-2">
+                {item.title}
+              </h4>
+              <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }

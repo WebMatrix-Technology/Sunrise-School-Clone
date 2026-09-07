@@ -12,7 +12,8 @@ import {
   MapPin, 
   Award, 
   Layers,
-  Sparkles
+  Sparkles,
+  MessageSquare
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -275,7 +276,21 @@ export default function AdminDashboard() {
                       <td className="p-4 pl-6 font-semibold text-slate-900">{item.name}</td>
                       <td className="p-4">{item.email}</td>
                       <td className="p-4">{item.phone || "N/A"}</td>
-                      <td className="p-4 italic text-slate-500">{item.subject || "No Subject"}</td>
+                      <td className="p-4 text-slate-600">
+                        {item.subject?.includes("[Chat Lead]") ? (
+                          <div className="flex items-center gap-1.5">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-600 border border-amber-500/20 shrink-0">
+                              <MessageSquare size={10} />
+                              <span>Chat Lead</span>
+                            </span>
+                            <span className="italic text-slate-500 text-xs truncate max-w-[150px]" title={item.subject}>
+                              {item.subject.replace("[Chat Lead] ", "").replace("[Chat Lead]", "")}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="italic text-slate-500">{item.subject || "No Subject"}</span>
+                        )}
+                      </td>
                       <td className="p-4 text-xs text-slate-400">{new Date(item.timestamp).toLocaleDateString()}</td>
                       <td className="p-4 flex items-center justify-center gap-2">
                         <button
@@ -384,7 +399,14 @@ export default function AdminDashboard() {
             ) : (
               <div className="space-y-6">
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-blue-500 uppercase tracking-widest block">Message Details</span>
+                  {selectedItem.subject?.includes("[Chat Lead]") ? (
+                    <span className="text-xs font-bold text-amber-500 uppercase tracking-widest flex items-center gap-1 block">
+                      <MessageSquare size={12} />
+                      <span>Chat Bot Inquiry Details</span>
+                    </span>
+                  ) : (
+                    <span className="text-xs font-bold text-blue-500 uppercase tracking-widest block">Message Details</span>
+                  )}
                   <h3 className="font-display font-extrabold text-2xl text-slate-900">{selectedItem.name}</h3>
                   <span className="text-xs text-slate-400">{new Date(selectedItem.timestamp).toLocaleString()}</span>
                 </div>
@@ -392,7 +414,19 @@ export default function AdminDashboard() {
                 <div className="grid grid-cols-2 gap-4 text-xs md:text-sm border-t border-b border-slate-100 py-4">
                   <p><span className="text-slate-400 font-medium">Email:</span> <span className="font-semibold text-slate-900">{selectedItem.email}</span></p>
                   <p><span className="text-slate-400 font-medium">Phone:</span> <span className="font-semibold text-slate-900">{selectedItem.phone || "N/A"}</span></p>
-                  <p className="col-span-2"><span className="text-slate-400 font-medium">Subject:</span> <span className="font-semibold text-slate-900 italic">"{selectedItem.subject || "No Subject"}"</span></p>
+                  <p className="col-span-2">
+                    <span className="text-slate-400 font-medium">Subject: </span> 
+                    <span className="font-semibold text-slate-900 italic">
+                      {selectedItem.subject?.includes("[Chat Lead]") ? (
+                        <>
+                          <span className="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold mr-1.5 inline-block">CHAT BOT</span>
+                          "{selectedItem.subject.replace("[Chat Lead] ", "").replace("[Chat Lead]", "")}"
+                        </>
+                      ) : (
+                        `"${selectedItem.subject || "No Subject"}"`
+                      )}
+                    </span>
+                  </p>
                 </div>
 
                 <div className="space-y-2">

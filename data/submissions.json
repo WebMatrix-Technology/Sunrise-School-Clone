@@ -1,0 +1,109 @@
+{
+  "enquiries": [
+    {
+      "id": "enq_1788538170149_xd7g",
+      "timestamp": "2026-09-04T16:09:30.149Z",
+      "studentName": "avan samarjeet pal",
+      "dob": "2005-09-01",
+      "standard": "IX",
+      "visitorName": "samarjeet pal",
+      "flatNo": "1409",
+      "buildingName": "rajjniwas",
+      "streetRoad": "ambedkar road",
+      "villageTown": "turbhe ",
+      "city": "navi mumbai",
+      "state": "maharshtra ",
+      "pincode": "400705",
+      "telephone": "",
+      "mobile": "9833602028",
+      "email": "awanpal320@gmail.com",
+      "interests": [
+        "Drawing",
+        "Cricket",
+        "Carrom"
+      ],
+      "previousSchool": "modern school",
+      "infoSource": ""
+    },
+    {
+      "id": "enq_1788364203602_aqj0",
+      "timestamp": "2026-09-02T15:50:03.602Z",
+      "studentName": "avan ",
+      "dob": "2005-09-01",
+      "standard": "Sr. Kg",
+      "visitorName": "arbazz",
+      "flatNo": "1409",
+      "buildingName": "nnm",
+      "streetRoad": "navi mumbai ",
+      "villageTown": "turbhe ",
+      "city": "navi mumbai ",
+      "state": "maharashtra ",
+      "pincode": "400705",
+      "telephone": "na ",
+      "mobile": "9833602082",
+      "email": "awanpal@gmail.com",
+      "interests": [
+        "Craft",
+        "Kabaddi"
+      ],
+      "previousSchool": "na",
+      "infoSource": "banner"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "cnt_1788365190469_nyml",
+      "timestamp": "2026-09-02T16:06:30.469Z",
+      "name": "avan ",
+      "email": "awanpal@gmail.com",
+      "phone": "9833602082",
+      "subject": "admission",
+      "message": "gmm"
+    },
+    {
+      "id": "cnt_1788364798041_3254",
+      "timestamp": "2026-09-02T15:59:58.041Z",
+      "name": "avan samarjeet pal ",
+      "email": "awanpal320@gmail.com",
+      "phone": "9833602082",
+      "subject": "enquriy",
+      "message": "avana  "
+    },
+    {
+      "id": "cnt_1788256656009_csmw",
+      "timestamp": "2026-09-01T09:57:36.009Z",
+      "name": "avan samarjeet pal",
+      "email": "awanpal320@gmail.com",
+      "phone": "9833602028",
+      "subject": "admission",
+      "message": "hwhhe"
+    },
+    {
+      "id": "cnt_1788019091307_erm9",
+      "timestamp": "2026-08-29T15:58:11.307Z",
+      "name": "avan samarjeet pal ",
+      "email": "awanpal320@gmail.com",
+      "phone": "9833602028",
+      "subject": "admission ",
+      "message": "fguiuhgvcvbnjk\n"
+    },
+    {
+      "id": "cnt_1787757613754_nray",
+      "timestamp": "2026-08-26T15:20:13.754Z",
+      "name": "avan pal",
+      "email": "awanpal320@gmail.com",
+      "phone": "9833602082",
+      "subject": "admission",
+      "message": "dd"
+    },
+    {
+      "id": "cnt_1787757024106_udht",
+      "timestamp": "2026-08-26T15:10:24.106Z",
+      "name": "yes",
+      "email": "awanpal320@gmail.com",
+      "phone": "9833602082",
+      "subject": "[Chat Lead] Admissions Callback",
+      "message": "[Chat Query] Grade/Question: for admission. User Contact Phone: 9833602082"
+    }
+  ]
+}

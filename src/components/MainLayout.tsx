@@ -21,6 +21,7 @@ import {
   Download, 
   Compass
 } from "lucide-react";
+import TawkChat from "./TawkChat";
 
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
@@ -43,7 +44,6 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     { label: "Admission Enquiry", href: "/enquiry-form", icon: FileText },
     { label: "FAQ", href: "/faq", icon: HelpCircle },
     { label: "Gallery", href: "/gallery", icon: ImageIcon },
-    { label: "Transport Policy", href: "/transport-policy", icon: Bus },
     { label: "Contact Us", href: "/contact", icon: PhoneCall },
   ];
 
@@ -212,7 +212,6 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/why-sunrise" className="hover:text-amber-400 transition-colors">Why Choose Us</Link>
                 <Link href="/chairman-message" className="hover:text-amber-400 transition-colors">Chairman's Desk</Link>
                 <Link href="/online-admission" className="hover:text-amber-400 transition-colors">Admission Enquiry</Link>
-                <Link href="/transport-policy" className="hover:text-amber-400 transition-colors">Transport Policy</Link>
                 <Link href="/gallery" className="hover:text-amber-400 transition-colors">Gallery</Link>
                 <Link href="/faq" className="hover:text-amber-400 transition-colors">FAQ</Link>
                 <Link href="/contact" className="hover:text-amber-400 transition-colors">Contact Us</Link>
@@ -252,17 +251,20 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
 
-        {/* 4. Brochure download link (fixed-bottom) */}
+        {/* 4. Brochure download link (vertical, middle-right) */}
         <a 
           href="https://www.sunriseinternationalschool.co.in/static/brochure.pdf" 
           download 
           target="_blank" 
           rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-40 bg-slate-900 text-white px-5 py-3 rounded-full font-semibold text-xs shadow-premium-lg hover:bg-amber-500 hover:text-slate-950 hover:-translate-y-1 transition-all duration-300 border border-slate-800 flex items-center gap-2 group"
+          className="fixed top-1/2 right-[5px] z-40 bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-6 font-display font-extrabold text-[13px] uppercase tracking-wider shadow-premium-lg transition-all duration-300 border border-amber-600/10 [writing-mode:vertical-rl] rotate-180 translate-y-1/2 rounded-r-xl select-none flex items-center justify-center gap-2 group"
         >
-          <Download size={14} className="group-hover:bounce" />
+          <Download size={14} className="rotate-90 group-hover:translate-x-0.5 transition-transform" />
           <span>Download Brochure</span>
         </a>
+
+        {/* Support Chat Widget */}
+        <TawkChat />
 
         {/* 5. Admission Inquiry Dialog/Modal Overlay */}
         {modalOpen && (
