@@ -12,21 +12,37 @@ export default function ContactPage() {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       alert("Please fill in all required fields (Name, Email, and Message).");
       return;
     }
-    alert("Thank you! Your message has been received. Our team will get back to you shortly.");
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: ""
-    });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        alert("Thank you! Your message has been received. Our team will get back to you shortly.");
+        setForm({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
+      } else {
+        alert(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      alert("An error occurred. Please try again.");
+    }
   };
+
 
   return (
     <div className="space-y-12">

@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Check, ClipboardList, Clock, AlertTriangle, FileCheck } from "lucide-react";
+import { Check, ClipboardList, Clock, AlertTriangle, FileCheck, Calculator } from "lucide-react";
 
 export default function OnlineAdmissionPage() {
   const steps = [

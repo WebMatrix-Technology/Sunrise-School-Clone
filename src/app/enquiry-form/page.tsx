@@ -73,33 +73,49 @@ export default function EnquiryFormPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.studentName || !formData.dob || !formData.standard || !formData.mobile) {
       alert("Please fill out all mandatory fields: Student Name, Date of Birth, Standard, and Mobile Number.");
       return;
     }
-    alert("Thank you! Your Admission Enquiry has been successfully submitted. Our coordinate team will contact you shortly.");
-    setFormData({
-      studentName: "",
-      dob: "",
-      standard: "",
-      visitorName: "",
-      flatNo: "",
-      buildingName: "",
-      streetRoad: "",
-      villageTown: "",
-      city: "",
-      state: "",
-      pincode: "",
-      telephone: "",
-      mobile: "",
-      email: "",
-      interests: [],
-      previousSchool: "",
-      infoSource: ""
-    });
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      const resData = await response.json();
+      if (response.ok && resData.success) {
+        alert("Thank you! Your Admission Enquiry has been successfully submitted. Our coordinate team will contact you shortly.");
+        setFormData({
+          studentName: "",
+          dob: "",
+          standard: "",
+          visitorName: "",
+          flatNo: "",
+          buildingName: "",
+          streetRoad: "",
+          villageTown: "",
+          city: "",
+          state: "",
+          pincode: "",
+          telephone: "",
+          mobile: "",
+          email: "",
+          interests: [],
+          previousSchool: "",
+          infoSource: ""
+        });
+      } else {
+        alert(resData.error || "Failed to submit enquiry form. Please try again.");
+      }
+    } catch (err) {
+      alert("An error occurred during submission. Please try again.");
+    }
   };
+
 
   return (
     <div className="space-y-12">
