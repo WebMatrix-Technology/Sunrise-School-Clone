@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, MapPin, Mail, Phone, Clock } from "lucide-react";
+import Link from "next/link";
+import { Send, MapPin, Mail, Phone, Clock, PhoneCall, Sparkles, Building, MessageSquare } from "lucide-react";
 
 export default function ContactPage() {
   const [form, setForm] = useState({
@@ -43,96 +44,101 @@ export default function ContactPage() {
     }
   };
 
-
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 md:space-y-16">
       {/* HEADER */}
-      <section className="space-y-4">
-        <span className="text-amber-500 font-display font-bold text-xs uppercase tracking-widest block">
-          Get In Touch
-        </span>
-        <h1 className="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight">
-          Contact Us
+      <section className="space-y-3">
+        <div className="inline-flex items-center gap-1.5 text-amber-600 font-display font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-md border border-amber-200">
+          <PhoneCall size={14} />
+          <span>Get In Touch</span>
+        </div>
+        <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-[#0b2240] tracking-tight">
+          Contact & Campus Visit
         </h1>
-        <p className="text-slate-500 text-sm md:text-base max-w-xl">
+        <p className="text-slate-600 text-sm sm:text-base max-w-xl">
           Have queries about syllabus, fees, or school policies? Send us a direct message or visit our campus.
         </p>
       </section>
 
       {/* TWO COLUMN GRID */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
         
         {/* Left Column: Form */}
-        <div className="lg:col-span-7 bg-white border border-slate-100 p-6 md:p-10 rounded-3xl shadow-premium">
-          <h2 className="font-display font-bold text-xl text-slate-900 mb-6">Send Us a Message</h2>
+        <div className="lg:col-span-7 bg-white border border-slate-200/80 p-8 sm:p-12 rounded-3xl shadow-school">
+          <div className="flex items-center gap-2.5 pb-4 mb-6 border-b border-slate-100">
+            <MessageSquare size={20} className="text-amber-600" />
+            <h2 className="font-display font-black text-xl text-[#0b2240]">
+              Send Us a Message
+            </h2>
+          </div>
           
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Your Name *</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Your Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="Full name"
                   value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })}
-                  className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all"
+                  className="px-4 py-3.5 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Email address *</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Email Address *</label>
                 <input
                   type="email"
                   required
                   placeholder="Email address"
                   value={form.email}
                   onChange={e => setForm({ ...form, email: e.target.value })}
-                  className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all"
+                  className="px-4 py-3.5 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Phone No.</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Phone No.</label>
                 <input
                   type="tel"
                   placeholder="Contact phone"
                   value={form.phone}
                   onChange={e => setForm({ ...form, phone: e.target.value })}
-                  className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all"
+                  className="px-4 py-3.5 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Subject</label>
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Subject</label>
                 <input
                   type="text"
                   placeholder="Subject of enquiry"
                   value={form.subject}
                   onChange={e => setForm({ ...form, subject: e.target.value })}
-                  className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all"
+                  className="px-4 py-3.5 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">Message *</label>
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Message *</label>
               <textarea
                 rows={5}
                 required
                 placeholder="Type your message details here..."
                 value={form.message}
                 onChange={e => setForm({ ...form, message: e.target.value })}
-                className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all resize-none"
+                className="px-4 py-3.5 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all resize-none bg-slate-50/50"
               />
             </div>
 
             <div className="pt-2 flex justify-end">
               <button
                 type="submit"
-                className="px-6 py-3.5 bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-white font-bold rounded-xl text-sm transition-all duration-200 shadow-md flex items-center gap-2"
+                className="px-8 py-3.5 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 hover:text-white font-black rounded-xl text-sm transition-all duration-200 shadow-gold hover:shadow-school flex items-center gap-2"
               >
                 <Send size={16} />
                 <span>Send Message</span>
@@ -143,31 +149,54 @@ export default function ContactPage() {
 
         {/* Right Column: Address Cards & Map */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-premium space-y-4">
-            <h3 className="font-display font-bold text-lg text-slate-900 pb-2 border-b border-slate-50">Campus Contact Details</h3>
+          <div className="bg-white border border-slate-200/80 p-8 rounded-3xl shadow-school space-y-5">
+            <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
+              <Building size={20} className="text-amber-600" />
+              <h3 className="font-display font-black text-lg text-[#0b2240]">
+                Campus Contact Details
+              </h3>
+            </div>
             
-            <div className="space-y-4 text-slate-600 text-sm">
-              <div className="flex items-start gap-3">
-                <MapPin className="text-amber-500 shrink-0 mt-0.5" size={18} />
-                <span>Village Vaalivali, Barvi Dam Road, Opp New Water Tank. Badlapur (West), Dist. Thane. Pin code : 421503.</span>
+            <div className="space-y-4 text-slate-700 text-sm">
+              <div className="flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin size={18} />
+                </div>
+                <span className="leading-relaxed">
+                  Village Vaalivali, Barvi Dam Road, Opp New Water Tank. Badlapur (West), Dist. Thane. Pin code : 421503.
+                </span>
               </div>
-              <div className="flex items-center gap-3">
-                <Phone className="text-amber-500 shrink-0" size={18} />
-                <span>+91-9324120900 / +91-9702313188</span>
+              
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <Phone size={18} />
+                </div>
+                <div className="flex flex-col">
+                  <a href="tel:9324120900" className="hover:text-amber-600 font-semibold transition-colors">+91-9324120900</a>
+                  <a href="tel:9702313188" className="hover:text-amber-600 text-xs text-slate-500 transition-colors">+91-9702313188</a>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="text-amber-500 shrink-0" size={18} />
-                <span>sunriseint.school@gmail.com</span>
+
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <Mail size={18} />
+                </div>
+                <a href="mailto:sunriseint.school@gmail.com" className="hover:text-amber-600 font-semibold transition-colors truncate">
+                  sunriseint.school@gmail.com
+                </a>
               </div>
-              <div className="flex items-center gap-3">
-                <Clock className="text-amber-500 shrink-0" size={18} />
-                <span>Office Hours: 08:00 AM - 04:00 PM</span>
+
+              <div className="flex items-center gap-3.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <Clock size={18} />
+                </div>
+                <span className="font-medium text-slate-600">Office Hours: Mon - Sat (08:00 AM - 04:00 PM)</span>
               </div>
             </div>
           </div>
 
           {/* Embedded Iframe Map */}
-          <div className="h-64 rounded-3xl overflow-hidden shadow-premium border border-slate-100 relative">
+          <div className="h-72 rounded-3xl overflow-hidden shadow-school border border-slate-200/80 relative">
             <iframe 
               src="https://maps.google.com/maps?q=Village%20Vaalivali,%20Badlapur,%20Thane&t=&z=14&ie=UTF8&iwloc=&output=embed" 
               className="w-full h-full border-none"
@@ -181,3 +210,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

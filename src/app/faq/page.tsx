@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { HelpCircle, ChevronDown, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { HelpCircle, ChevronDown, Sparkles, Home, PhoneCall } from "lucide-react";
 
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -70,53 +71,76 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-12 md:space-y-16">
       {/* HEADER */}
-      <section className="space-y-4">
-        <span className="text-amber-500 font-display font-bold text-xs uppercase tracking-widest block">
-          Support Desk
-        </span>
-        <h1 className="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight">
+      <section className="space-y-3">
+        <div className="inline-flex items-center gap-1.5 text-amber-600 font-display font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-md border border-amber-200">
+          <HelpCircle size={14} />
+          <span>Parent Support Desk</span>
+        </div>
+        <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-[#0b2240] tracking-tight">
           Frequently Asked Questions
         </h1>
-        <p className="text-slate-500 text-sm md:text-base max-w-xl">
-          Here are some of the most common questions asked by parents regarding admissions, academic formats, transport, and curriculum.
+        <p className="text-slate-600 text-sm sm:text-base max-w-2xl">
+          Here are the most common questions asked by parents regarding admissions, academic formats, transport, and curriculum.
         </p>
       </section>
 
       {/* Accordion List */}
-      <section className="max-w-3xl mx-auto">
-        <div className="space-y-4">
+      <section className="max-w-4xl mx-auto space-y-4">
+        <div className="space-y-3.5">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div 
                 key={index} 
-                className="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-premium transition-all duration-200"
+                className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden shadow-school ${
+                  isOpen ? "border-amber-400 ring-2 ring-amber-500/10" : "border-slate-200/80 hover:border-slate-300"
+                }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between p-5 text-left font-display font-bold text-sm md:text-base text-slate-900 focus:outline-none"
+                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-display font-bold text-sm sm:text-base text-[#0b2240] focus:outline-none cursor-pointer"
                 >
                   <span className="pr-4">{faq.q}</span>
-                  <ChevronDown 
-                    size={18} 
-                    className={`text-amber-500 transition-transform duration-200 shrink-0 ${isOpen ? "transform rotate-180" : ""}`} 
-                  />
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                    isOpen ? "bg-amber-500 text-slate-950 rotate-180" : "bg-slate-100 text-slate-600"
+                  }`}>
+                    <ChevronDown size={18} />
+                  </div>
                 </button>
 
                 <div 
                   className={`transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-[300px] border-t border-slate-50 p-5" : "max-h-0 overflow-hidden p-0"
+                    isOpen ? "max-h-[400px] border-t border-slate-100 p-5 sm:p-6 bg-slate-50/50" : "max-h-0 overflow-hidden p-0"
                   }`}
                 >
-                  <p className="text-slate-600 text-xs md:text-sm leading-relaxed">{faq.a}</p>
+                  <p className="text-slate-700 text-xs sm:text-sm md:text-base leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Still have questions banner */}
+        <div className="mt-8 p-6 rounded-3xl bg-[#0b2240] text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-school">
+          <div>
+            <h4 className="font-display font-bold text-base sm:text-lg text-white">
+              Still have questions about admissions?
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-300">
+              Our admission counselling team is available Monday to Saturday (8:00 AM - 4:00 PM).
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="shrink-0 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm rounded-xl transition-all shadow-gold"
+          >
+            Contact Admission Desk
+          </Link>
+        </div>
       </section>
     </div>
   );
 }
+

@@ -13,7 +13,9 @@ import {
   Award, 
   Layers,
   Sparkles,
-  MessageSquare
+  MessageSquare,
+  ShieldCheck,
+  GraduationCap
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -91,56 +93,69 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-16">
       {/* HEADER */}
-      <section className="space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-amber-500 font-display font-bold text-xs uppercase tracking-widest block">
-            School Administration
-          </span>
-          <span className="text-[10px] bg-slate-900 text-white font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
-            Secured panel
-          </span>
+      <section className="bg-gradient-to-r from-[#07162c] via-[#0b2240] to-[#163b6d] rounded-3xl p-8 md:p-10 text-white shadow-xl border-4 border-amber-400/20">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-amber-400 text-slate-950 shadow-md">
+                <ShieldCheck size={14} />
+                Secured School Administration
+              </span>
+              <span className="text-amber-200 text-xs font-semibold">
+                SIS Portal
+              </span>
+            </div>
+            <h1 className="font-serif font-black text-2xl md:text-4xl text-white tracking-tight">
+              Admin & Enrolment Dashboard
+            </h1>
+            <p className="text-slate-300 text-xs md:text-sm max-w-xl">
+              Review, filter, and manage incoming student admission applications and contact notifications in real-time.
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={fetchSubmissions}
+              className="px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-xs font-bold text-white transition backdrop-blur-sm"
+            >
+              Refresh Data
+            </button>
+          </div>
         </div>
-        <h1 className="font-display font-extrabold text-3xl md:text-5xl text-slate-900 tracking-tight">
-          Admin Dashboard
-        </h1>
-        <p className="text-slate-500 text-sm md:text-base max-w-xl">
-          Review, filter, and manage incoming student admission applications and contact notifications.
-        </p>
       </section>
 
       {/* METRICS CARDS */}
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-premium flex items-center justify-between">
+        <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-lg flex items-center justify-between hover:shadow-xl transition-all border-l-4 border-l-amber-500">
           <div className="space-y-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Enquiries</span>
-            <span className="font-display font-black text-3xl text-slate-900">{enquiries.length}</span>
+            <span className="text-[11px] font-black text-slate-400 uppercase tracking-wider block">Total Enquiries</span>
+            <span className="font-serif font-black text-3xl text-[#0b2240]">{enquiries.length}</span>
           </div>
-          <div className="p-3 bg-amber-500/10 text-amber-600 rounded-xl">
+          <div className="p-3.5 bg-amber-50 text-amber-600 rounded-2xl">
             <Users size={24} />
           </div>
         </div>
 
-        <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-premium flex items-center justify-between">
+        <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-lg flex items-center justify-between hover:shadow-xl transition-all border-l-4 border-l-blue-600">
           <div className="space-y-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Contact Messages</span>
-            <span className="font-display font-black text-3xl text-slate-900">{contacts.length}</span>
+            <span className="text-[11px] font-black text-slate-400 uppercase tracking-wider block">Contact Messages</span>
+            <span className="font-serif font-black text-3xl text-[#0b2240]">{contacts.length}</span>
           </div>
-          <div className="p-3 bg-blue-500/10 text-blue-600 rounded-xl">
+          <div className="p-3.5 bg-blue-50 text-blue-600 rounded-2xl">
             <Mail size={24} />
           </div>
         </div>
 
-        <div className="bg-white border border-slate-100 p-6 rounded-2xl shadow-premium flex items-center justify-between">
+        <div className="bg-white border border-slate-100 p-6 rounded-3xl shadow-lg flex items-center justify-between hover:shadow-xl transition-all border-l-4 border-l-emerald-600">
           <div className="space-y-1">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Nursery/KG Ratio</span>
-            <span className="font-display font-black text-3xl text-slate-900">
+            <span className="text-[11px] font-black text-slate-400 uppercase tracking-wider block">Nursery/KG Ratio</span>
+            <span className="font-serif font-black text-3xl text-[#0b2240]">
               {enquiries.filter(e => ["Nursery", "Jr. Kg", "Sr. Kg"].includes(e.standard)).length} / {enquiries.length}
             </span>
           </div>
-          <div className="p-3 bg-emerald-500/10 text-emerald-600 rounded-xl">
-            <Layers size={24} />
+          <div className="p-3.5 bg-emerald-50 text-emerald-600 rounded-2xl">
+            <GraduationCap size={24} />
           </div>
         </div>
       </section>
@@ -149,9 +164,9 @@ export default function AdminDashboard() {
       <section className="flex border-b border-slate-200">
         <button
           onClick={() => { setActiveTab("enquiries"); setSearchQuery(""); }}
-          className={`px-6 py-4.5 font-display font-bold text-sm border-b-2 transition-all flex items-center gap-2 ${
+          className={`px-6 py-3.5 font-serif font-bold text-sm border-b-2 transition-all flex items-center gap-2 ${
             activeTab === "enquiries"
-              ? "border-amber-500 text-amber-600"
+              ? "border-amber-500 text-amber-600 bg-amber-50/30 rounded-t-xl"
               : "border-transparent text-slate-500 hover:text-slate-800"
           }`}
         >
@@ -160,9 +175,9 @@ export default function AdminDashboard() {
         </button>
         <button
           onClick={() => { setActiveTab("messages"); setSearchQuery(""); }}
-          className={`px-6 py-4.5 font-display font-bold text-sm border-b-2 transition-all flex items-center gap-2 ${
+          className={`px-6 py-3.5 font-serif font-bold text-sm border-b-2 transition-all flex items-center gap-2 ${
             activeTab === "messages"
-              ? "border-amber-500 text-amber-600"
+              ? "border-amber-500 text-amber-600 bg-amber-50/30 rounded-t-xl"
               : "border-transparent text-slate-500 hover:text-slate-800"
           }`}
         >
@@ -172,7 +187,7 @@ export default function AdminDashboard() {
       </section>
 
       {/* CONTROLS (SEARCH & FILTERS) */}
-      <section className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white border border-slate-100 p-4 rounded-2xl shadow-premium">
+      <section className="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white border border-slate-100 p-4 rounded-2xl shadow-md">
         <div className="relative w-full sm:max-w-xs">
           <Search size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
@@ -190,7 +205,7 @@ export default function AdminDashboard() {
             <select
               value={selectedStandard}
               onChange={e => setSelectedStandard(e.target.value)}
-              className="px-3 py-2.5 rounded-xl border border-slate-200 text-xs md:text-sm outline-none bg-white focus:border-amber-500 transition-all"
+              className="px-3 py-2.5 rounded-xl border border-slate-200 text-xs md:text-sm outline-none bg-white focus:border-amber-500 transition-all font-medium text-slate-700"
             >
               <option value="">All Standards</option>
               {standards.map((std, i) => (
@@ -202,7 +217,7 @@ export default function AdminDashboard() {
       </section>
 
       {/* TABLE VIEW */}
-      <section className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-premium">
+      <section className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-xl">
         {loading ? (
           <div className="text-center py-20 text-slate-500">
             <p className="text-sm font-semibold animate-pulse">Loading submissions database...</p>
@@ -212,7 +227,7 @@ export default function AdminDashboard() {
             {activeTab === "enquiries" ? (
               <table className="w-full text-left border-collapse text-xs md:text-sm">
                 <thead>
-                  <tr className="bg-slate-900 text-white font-display font-semibold uppercase tracking-wider text-[10px]">
+                  <tr className="bg-[#0b2240] text-white font-serif uppercase tracking-wider text-[10px]">
                     <th className="p-4 pl-6">Student Name</th>
                     <th className="p-4">Standard</th>
                     <th className="p-4">Date of Birth</th>
@@ -223,20 +238,20 @@ export default function AdminDashboard() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-slate-600">
                   {filteredEnquiries.map((item) => (
-                    <tr key={item.id} className="hover:bg-slate-50/50">
-                      <td className="p-4 pl-6 font-semibold text-slate-900">{item.studentName}</td>
+                    <tr key={item.id} className="hover:bg-amber-50/30 transition-colors">
+                      <td className="p-4 pl-6 font-bold text-[#0b2240]">{item.studentName}</td>
                       <td className="p-4">
-                        <span className="px-2.5 py-1 bg-amber-500/10 text-amber-600 font-bold rounded-lg text-[10px] md:text-xs">
+                        <span className="px-2.5 py-1 bg-amber-500/10 text-amber-700 font-bold rounded-lg text-[10px] md:text-xs border border-amber-200">
                           {item.standard}
                         </span>
                       </td>
-                      <td className="p-4">{item.dob}</td>
-                      <td className="p-4">{item.mobile}</td>
-                      <td className="p-4">{item.visitorName || "N/A"}</td>
+                      <td className="p-4 font-medium">{item.dob}</td>
+                      <td className="p-4 font-medium">{item.mobile}</td>
+                      <td className="p-4 font-medium">{item.visitorName || "N/A"}</td>
                       <td className="p-4 flex items-center justify-center gap-2">
                         <button
                           onClick={() => setSelectedItem(item)}
-                          className="p-2 text-slate-500 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-lg transition"
+                          className="p-2 text-slate-600 hover:text-[#0b2240] bg-slate-50 hover:bg-slate-100 rounded-lg transition"
                           title="View Details"
                         >
                           <Eye size={16} />
@@ -261,7 +276,7 @@ export default function AdminDashboard() {
             ) : (
               <table className="w-full text-left border-collapse text-xs md:text-sm">
                 <thead>
-                  <tr className="bg-slate-900 text-white font-display font-semibold uppercase tracking-wider text-[10px]">
+                  <tr className="bg-[#0b2240] text-white font-serif uppercase tracking-wider text-[10px]">
                     <th className="p-4 pl-6">Visitor</th>
                     <th className="p-4">Email</th>
                     <th className="p-4">Phone</th>
@@ -272,14 +287,14 @@ export default function AdminDashboard() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-slate-600">
                   {filteredContacts.map((item) => (
-                    <tr key={item.id} className="hover:bg-slate-50/50">
-                      <td className="p-4 pl-6 font-semibold text-slate-900">{item.name}</td>
-                      <td className="p-4">{item.email}</td>
-                      <td className="p-4">{item.phone || "N/A"}</td>
+                    <tr key={item.id} className="hover:bg-amber-50/30 transition-colors">
+                      <td className="p-4 pl-6 font-bold text-[#0b2240]">{item.name}</td>
+                      <td className="p-4 font-medium">{item.email}</td>
+                      <td className="p-4 font-medium">{item.phone || "N/A"}</td>
                       <td className="p-4 text-slate-600">
                         {item.subject?.includes("[Chat Lead]") ? (
                           <div className="flex items-center gap-1.5">
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-600 border border-amber-500/20 shrink-0">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-700 border border-amber-500/20 shrink-0">
                               <MessageSquare size={10} />
                               <span>Chat Lead</span>
                             </span>
@@ -295,7 +310,7 @@ export default function AdminDashboard() {
                       <td className="p-4 flex items-center justify-center gap-2">
                         <button
                           onClick={() => setSelectedItem(item)}
-                          className="p-2 text-slate-500 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-lg transition"
+                          className="p-2 text-slate-600 hover:text-[#0b2240] bg-slate-50 hover:bg-slate-100 rounded-lg transition"
                           title="View Message"
                         >
                           <Eye size={16} />
@@ -324,8 +339,8 @@ export default function AdminDashboard() {
 
       {/* DETAIL VIEW OVERLAY MODAL */}
       {selectedItem && (
-        <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-6 md:p-8 max-w-2xl w-full relative shadow-premium-lg border border-slate-100 overflow-y-auto max-h-[90vh]">
+        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full relative shadow-2xl border border-slate-100 overflow-y-auto max-h-[90vh]">
             <button
               onClick={() => setSelectedItem(null)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition"
@@ -337,14 +352,14 @@ export default function AdminDashboard() {
             {selectedItem.id.startsWith("enq_") ? (
               <div className="space-y-6">
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-amber-500 uppercase tracking-widest block">Submission Details</span>
-                  <h3 className="font-display font-extrabold text-2xl text-slate-900">{selectedItem.studentName}</h3>
+                  <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block">Submission Details</span>
+                  <h3 className="font-serif font-black text-2xl text-[#0b2240]">{selectedItem.studentName}</h3>
                   <span className="text-xs text-slate-400">{new Date(selectedItem.timestamp).toLocaleString()}</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm border-t border-slate-100 pt-4">
                   <div className="space-y-3">
-                    <p className="flex justify-between border-b pb-1"><span className="text-slate-400 font-medium">Class Grade:</span> <span className="font-bold text-slate-900">{selectedItem.standard}</span></p>
+                    <p className="flex justify-between border-b pb-1"><span className="text-slate-400 font-medium">Class Grade:</span> <span className="font-bold text-[#0b2240]">{selectedItem.standard}</span></p>
                     <p className="flex justify-between border-b pb-1"><span className="text-slate-400 font-medium">Date of Birth:</span> <span className="text-slate-900 font-medium">{selectedItem.dob}</span></p>
                     <p className="flex justify-between border-b pb-1"><span className="text-slate-400 font-medium">Visitor Name:</span> <span className="text-slate-900 font-medium">{selectedItem.visitorName || "N/A"}</span></p>
                     <p className="flex justify-between border-b pb-1"><span className="text-slate-400 font-medium">Mobile Phone:</span> <span className="text-slate-900 font-medium">{selectedItem.mobile}</span></p>
@@ -377,7 +392,7 @@ export default function AdminDashboard() {
                   <div className="flex flex-wrap gap-1.5">
                     {selectedItem.interests && selectedItem.interests.length > 0 ? (
                       selectedItem.interests.map((i: string, idx: number) => (
-                        <span key={idx} className="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-lg">
+                        <span key={idx} className="px-2.5 py-1 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-lg">
                           {i}
                         </span>
                       ))
@@ -390,7 +405,7 @@ export default function AdminDashboard() {
                 <div className="flex justify-end pt-4 border-t border-slate-100">
                   <button
                     onClick={() => setSelectedItem(null)}
-                    className="px-5 py-2.5 bg-slate-950 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition"
+                    className="px-5 py-2.5 bg-[#0b2240] hover:bg-[#163b6d] text-white font-bold rounded-xl text-xs transition shadow-md"
                   >
                     Close Panel
                   </button>
@@ -400,14 +415,14 @@ export default function AdminDashboard() {
               <div className="space-y-6">
                 <div className="space-y-1">
                   {selectedItem.subject?.includes("[Chat Lead]") ? (
-                    <span className="text-xs font-bold text-amber-500 uppercase tracking-widest flex items-center gap-1 block">
+                    <span className="text-xs font-bold text-amber-600 uppercase tracking-widest flex items-center gap-1 block">
                       <MessageSquare size={12} />
                       <span>Chat Bot Inquiry Details</span>
                     </span>
                   ) : (
-                    <span className="text-xs font-bold text-blue-500 uppercase tracking-widest block">Message Details</span>
+                    <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block">Message Details</span>
                   )}
-                  <h3 className="font-display font-extrabold text-2xl text-slate-900">{selectedItem.name}</h3>
+                  <h3 className="font-serif font-black text-2xl text-[#0b2240]">{selectedItem.name}</h3>
                   <span className="text-xs text-slate-400">{new Date(selectedItem.timestamp).toLocaleString()}</span>
                 </div>
 
@@ -439,7 +454,7 @@ export default function AdminDashboard() {
                 <div className="flex justify-end pt-4 border-t border-slate-100">
                   <button
                     onClick={() => setSelectedItem(null)}
-                    className="px-5 py-2.5 bg-slate-950 hover:bg-slate-800 text-white font-bold rounded-xl text-xs transition"
+                    className="px-5 py-2.5 bg-[#0b2240] hover:bg-[#163b6d] text-white font-bold rounded-xl text-xs transition shadow-md"
                   >
                     Close Panel
                   </button>
