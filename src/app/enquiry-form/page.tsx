@@ -135,7 +135,7 @@ export default function EnquiryFormPage() {
 
       {/* FORM CARD CONTAINER */}
       <section className="max-w-4xl mx-auto">
-        <form onSubmit={handleSubmit} className="bg-white border border-slate-200/80 p-8 sm:p-12 rounded-3xl shadow-school space-y-10">
+        <form onSubmit={handleSubmit} className="bg-white border border-slate-200/80 p-5 sm:p-8 md:p-12 rounded-3xl shadow-school space-y-8 sm:space-y-10">
           
           {/* Section 1: Student info */}
           <div className="space-y-6">
@@ -248,8 +248,8 @@ export default function EnquiryFormPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              <div className="col-span-2 flex flex-col gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
+              <div className="sm:col-span-2 md:col-span-2 flex flex-col gap-2">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Village / Town</label>
                 <input
                   type="text"
@@ -259,7 +259,7 @@ export default function EnquiryFormPage() {
                   className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
-              <div className="col-span-1 flex flex-col gap-2">
+              <div className="sm:col-span-1 md:col-span-1 flex flex-col gap-2">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">City</label>
                 <input
                   type="text"
@@ -269,7 +269,7 @@ export default function EnquiryFormPage() {
                   className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
-              <div className="col-span-1 flex flex-col gap-2">
+              <div className="sm:col-span-1 md:col-span-1 flex flex-col gap-2">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">State</label>
                 <input
                   type="text"
@@ -279,7 +279,7 @@ export default function EnquiryFormPage() {
                   className="px-4 py-3 rounded-xl border border-slate-200 outline-none text-slate-800 text-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all bg-slate-50/50"
                 />
               </div>
-              <div className="col-span-1 flex flex-col gap-2">
+              <div className="sm:col-span-2 md:col-span-1 flex flex-col gap-2">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Pincode</label>
                 <input
                   type="text"

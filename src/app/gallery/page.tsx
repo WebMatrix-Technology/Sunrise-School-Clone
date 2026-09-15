@@ -274,44 +274,44 @@ export default function GalleryPage() {
       {lightboxIndex !== null && activeAlbum && (
         <div 
           onClick={() => setLightboxIndex(null)}
-          className="fixed inset-0 z-50 bg-[#07162c]/95 backdrop-blur-md flex flex-col justify-center items-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#07162c]/95 backdrop-blur-md flex flex-col justify-center items-center p-2 sm:p-4 animate-in fade-in duration-200"
         >
           {/* Close button */}
           <button 
             onClick={() => setLightboxIndex(null)}
-            className="absolute top-6 right-6 text-slate-300 hover:text-white p-2.5 bg-white/10 hover:bg-white/20 rounded-full transition cursor-pointer"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 text-slate-300 hover:text-white p-2 sm:p-2.5 bg-white/10 hover:bg-white/20 rounded-full transition cursor-pointer z-30"
             title="Close Lightbox"
           >
-            <X size={22} />
+            <X size={20} />
           </button>
 
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
-            className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 p-3.5 bg-[#0b2240]/80 hover:bg-[#16325c] border border-white/20 rounded-full transition cursor-pointer shadow-lg z-20"
+            className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 p-2.5 sm:p-3.5 bg-[#0b2240]/80 hover:bg-[#16325c] border border-white/20 rounded-full transition cursor-pointer shadow-lg z-20"
             title="Previous Image"
           >
-            <ChevronLeft size={26} />
+            <ChevronLeft size={22} className="sm:w-6 sm:h-6" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 p-3.5 bg-[#0b2240]/80 hover:bg-[#16325c] border border-white/20 rounded-full transition cursor-pointer shadow-lg z-20"
+            className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white hover:text-amber-400 p-2.5 sm:p-3.5 bg-[#0b2240]/80 hover:bg-[#16325c] border border-white/20 rounded-full transition cursor-pointer shadow-lg z-20"
             title="Next Image"
           >
-            <ChevronRight size={26} />
+            <ChevronRight size={22} className="sm:w-6 sm:h-6" />
           </button>
           
           <div 
             onClick={e => e.stopPropagation()}
-            className="max-w-4xl w-full flex flex-col items-center gap-4 relative animate-in zoom-in-95 duration-200 z-10"
+            className="max-w-4xl w-full flex flex-col items-center gap-3 sm:gap-4 relative animate-in zoom-in-95 duration-200 z-10 px-8 sm:px-0"
           >
-            <div className="bg-slate-900/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-h-[75vh]">
+            <div className="bg-slate-900/40 border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-h-[70vh] sm:max-h-[75vh]">
               <img 
                 src={activeAlbumImages[lightboxIndex]} 
                 alt={`${activeAlbum.title} ${lightboxIndex + 1}`}
-                className="max-w-full h-auto object-contain max-h-[75vh]"
+                className="max-w-full h-auto object-contain max-h-[70vh] sm:max-h-[75vh]"
               />
             </div>
             <div className="text-center space-y-1 text-white">

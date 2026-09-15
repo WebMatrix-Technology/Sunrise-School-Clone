@@ -64,7 +64,7 @@ export default function ContactPage() {
       <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
         
         {/* Left Column: Form */}
-        <div className="lg:col-span-7 bg-white border border-slate-200/80 p-8 sm:p-12 rounded-3xl shadow-school">
+        <div className="lg:col-span-7 bg-white border border-slate-200/80 p-5 sm:p-8 md:p-12 rounded-3xl shadow-school">
           <div className="flex items-center gap-2.5 pb-4 mb-6 border-b border-slate-100">
             <MessageSquare size={20} className="text-amber-600" />
             <h2 className="font-display font-black text-xl text-[#0b2240]">
@@ -138,7 +138,7 @@ export default function ContactPage() {
             <div className="pt-2 flex justify-end">
               <button
                 type="submit"
-                className="px-8 py-3.5 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 hover:text-white font-black rounded-xl text-sm transition-all duration-200 shadow-gold hover:shadow-school flex items-center gap-2"
+                className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-amber-500 via-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 hover:text-white font-black rounded-xl text-sm transition-all duration-200 shadow-gold hover:shadow-school flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Send size={16} />
                 <span>Send Message</span>
@@ -149,7 +149,7 @@ export default function ContactPage() {
 
         {/* Right Column: Address Cards & Map */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white border border-slate-200/80 p-8 rounded-3xl shadow-school space-y-5">
+          <div className="bg-white border border-slate-200/80 p-5 sm:p-8 rounded-3xl shadow-school space-y-5">
             <div className="flex items-center gap-2.5 pb-3 border-b border-slate-100">
               <Building size={20} className="text-amber-600" />
               <h3 className="font-display font-black text-lg text-[#0b2240]">

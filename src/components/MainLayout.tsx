@@ -18,24 +18,24 @@ import {
   Mail, 
   Phone, 
   Download, 
-  Compass,
-  GraduationCap,
-  MapPin,
-  Clock,
-  ShieldCheck,
-  ChevronDown,
-  Lock
+  Compass, 
+  GraduationCap, 
+  MapPin, 
+  Clock, 
+  ShieldCheck, 
+  ChevronDown, 
+  Lock,
+  LayoutGrid
 } from "lucide-react";
-import TawkChat from "./TawkChat";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close mobile menu on path change
+  // Close more menu on path change
   useEffect(() => {
-    setMobileMenuOpen(false);
+    setMoreMenuOpen(false);
   }, [pathname]);
 
   const navItems = [
@@ -102,27 +102,27 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           <div className="flex items-center justify-between h-20 md:h-24">
             
             {/* School Emblem & Brand Title */}
-            <Link href="/" className="flex items-center gap-3.5 group shrink-0">
-              <div className="relative">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0 max-w-[65%] sm:max-w-none">
+              <div className="relative shrink-0">
                 <img 
                   src="https://www.sunriseinternationalschool.co.in/static/images/logo.png" 
                   alt="Sunrise International School Logo" 
-                  className="h-13 md:h-16 w-auto object-contain filter drop-shadow transition-transform duration-300 group-hover:scale-105"
+                  className="h-11 sm:h-14 md:h-16 w-auto object-contain filter drop-shadow transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-display font-black text-lg md:text-2xl tracking-tight text-[#0b2240] group-hover:text-amber-600 transition-colors">
+              <div className="flex flex-col min-w-0">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="font-display font-black text-base sm:text-xl md:text-2xl tracking-tight text-[#0b2240] group-hover:text-amber-600 transition-colors truncate">
                     SUNRISE
                   </span>
-                  <span className="text-[10px] md:text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 border border-amber-500/20">
+                  <span className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 border border-amber-500/20 shrink-0">
                     Est. 2000
                   </span>
                 </div>
-                <span className="font-display font-bold text-[11px] md:text-xs text-slate-600 tracking-wider uppercase -mt-0.5">
+                <span className="font-display font-bold text-[10px] sm:text-[11px] md:text-xs text-slate-600 tracking-wider uppercase -mt-0.5 truncate">
                   International School
                 </span>
-                <span className="text-[9px] md:text-[10px] text-slate-600 italic font-medium hidden sm:block">
+                <span className="text-[9px] md:text-[10px] text-slate-600 italic font-medium hidden md:block">
                   A School on Mountains • Badlapur (W)
                 </span>
               </div>
@@ -160,141 +160,234 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <FileText size={15} />
                 <span>Enquire Now</span>
               </Link>
-
-              {/* Mobile Menu Trigger */}
-              <button 
-                onClick={() => setMobileMenuOpen(true)}
-                className="xl:hidden p-2 rounded-xl text-slate-700 hover:text-[#0b2240] hover:bg-slate-100 transition-colors"
-                aria-label="Open Navigation Menu"
-              >
-                <Menu size={26} />
-              </button>
             </div>
           </div>
         </div>
-
-        {/* Secondary Tablet/Medium Screen Navigation Bar */}
-        <div className="hidden lg:flex xl:hidden border-t border-slate-100 bg-slate-50/70 px-4 py-2 justify-center gap-1 overflow-x-auto">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-2.5 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-colors ${
-                  isActive
-                    ? "text-amber-700 bg-amber-100"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
       </header>
 
-      {/* 3. MOBILE SLIDE-OVER DRAWER */}
-      {mobileMenuOpen && (
+      {/* 3. MOBILE & TABLET STICKY BOTTOM NAVIGATION BAR */}
+      <nav 
+        aria-label="Mobile Bottom Navigation"
+        className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-lg border-t border-slate-200/90 shadow-[0_-4px_25px_rgba(11,34,64,0.08)] xl:hidden"
+      >
+        <div className="max-w-md mx-auto px-3 py-1.5 flex items-center justify-between">
+          
+          {/* 1. Home */}
+          <Link
+            href="/"
+            className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-200 ${
+              pathname === "/" ? "text-amber-600 font-bold" : "text-slate-600 hover:text-[#0b2240]"
+            }`}
+          >
+            <Home size={20} className={pathname === "/" ? "stroke-[2.5]" : "stroke-[1.8]"} />
+            <span className="text-[10px] font-medium mt-0.5">Home</span>
+          </Link>
+
+          {/* 2. About */}
+          <Link
+            href="/about"
+            className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-200 ${
+              pathname === "/about" ? "text-amber-600 font-bold" : "text-slate-600 hover:text-[#0b2240]"
+            }`}
+          >
+            <Info size={20} className={pathname === "/about" ? "stroke-[2.5]" : "stroke-[1.8]"} />
+            <span className="text-[10px] font-medium mt-0.5">About</span>
+          </Link>
+
+          {/* 3. Center Admission Button (Elevated) */}
+          <Link
+            href="/online-admission"
+            className="flex flex-col items-center -mt-5 group"
+          >
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-gold transition-all duration-300 group-hover:scale-105 group-active:scale-95 ${
+              pathname === "/online-admission" || pathname === "/enquiry-form"
+                ? "bg-gradient-to-tr from-amber-500 to-amber-400 text-slate-950 ring-4 ring-amber-400/30"
+                : "bg-[#0b2240] text-amber-400 border-2 border-amber-400/40"
+            }`}>
+              <GraduationCap size={22} className="stroke-[2.2]" />
+            </div>
+            <span className="text-[10px] font-bold mt-1 text-[#0b2240]">Admission</span>
+          </Link>
+
+          {/* 4. Gallery */}
+          <Link
+            href="/gallery"
+            className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-200 ${
+              pathname === "/gallery" ? "text-amber-600 font-bold" : "text-slate-600 hover:text-[#0b2240]"
+            }`}
+          >
+            <ImageIcon size={20} className={pathname === "/gallery" ? "stroke-[2.5]" : "stroke-[1.8]"} />
+            <span className="text-[10px] font-medium mt-0.5">Gallery</span>
+          </Link>
+
+          {/* 5. More Menu Trigger */}
+          <button
+            type="button"
+            onClick={() => setMoreMenuOpen(prev => !prev)}
+            className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-200 cursor-pointer ${
+              moreMenuOpen ? "text-amber-600 font-bold" : "text-slate-600 hover:text-[#0b2240]"
+            }`}
+            aria-label="Toggle more navigation menu"
+          >
+            <LayoutGrid size={20} className={moreMenuOpen ? "stroke-[2.5]" : "stroke-[1.8]"} />
+            <span className="text-[10px] font-medium mt-0.5">More</span>
+          </button>
+
+        </div>
+      </nav>
+
+      {/* 4. "MORE" BOTTOM SHEET MODAL DRAWER */}
+      {moreMenuOpen && (
         <div className="fixed inset-0 z-50 xl:hidden">
           {/* Backdrop */}
           <div 
-            onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 bg-[#07162c]/70 backdrop-blur-sm transition-opacity"
+            onClick={() => setMoreMenuOpen(false)}
+            className="fixed inset-0 bg-[#07162c]/65 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
           />
 
-          {/* Drawer Menu */}
-          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-white text-slate-900 shadow-2xl flex flex-col p-6 overflow-y-auto">
+          {/* Bottom Sheet Container */}
+          <div className="fixed bottom-16 inset-x-0 z-50 max-w-lg mx-auto bg-white rounded-t-3xl border-t border-slate-200 shadow-2xl p-5 sm:p-6 animate-in slide-in-from-bottom-8 duration-300 max-h-[80vh] overflow-y-auto">
             
-            {/* Drawer Header */}
-            <div className="flex items-center justify-between pb-5 border-b border-slate-100">
-              <div className="flex items-center gap-2.5">
-                <img 
-                  src="https://www.sunriseinternationalschool.co.in/static/images/logo.png" 
-                  alt="SIS Logo" 
-                  className="h-10 w-auto"
-                />
-                <div>
-                  <span className="font-display font-extrabold text-sm text-[#0b2240] block">
-                    SUNRISE
-                  </span>
-                  <span className="text-[9px] text-slate-600 uppercase font-semibold block tracking-wider">
-                    International School
-                  </span>
-                </div>
+            {/* Drag Handle & Header */}
+            <div className="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-4" />
+            
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <span className="font-display font-black text-base text-[#0b2240]">
+                  Explore Sunrise
+                </span>
+                <span className="text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md uppercase">
+                  Menu
+                </span>
               </div>
               <button 
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                onClick={() => setMoreMenuOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
+                aria-label="Close Menu"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
 
-            {/* Quick Mobile Action */}
-            <div className="py-4 border-b border-slate-100 flex flex-col gap-2">
-              <Link 
-                href="/online-admission"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-2.5 bg-amber-500 text-slate-950 text-center font-bold text-xs rounded-xl shadow-xs"
+            {/* Grid of Navigation Items */}
+            <div className="grid grid-cols-2 gap-2.5 py-4">
+              <Link
+                href="/why-sunrise"
+                onClick={() => setMoreMenuOpen(false)}
+                className={`p-3 rounded-2xl border flex items-center gap-3 transition-all ${
+                  pathname === "/why-sunrise"
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-800 font-bold"
+                    : "bg-slate-50 hover:bg-white border-slate-200/80 text-slate-700 hover:border-amber-400"
+                }`}
               >
-                Enquire Now
+                <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <Sparkles size={16} />
+                </div>
+                <span className="text-xs font-semibold">Why Sunrise</span>
+              </Link>
+
+              <Link
+                href="/chairman-message"
+                onClick={() => setMoreMenuOpen(false)}
+                className={`p-3 rounded-2xl border flex items-center gap-3 transition-all ${
+                  pathname === "/chairman-message"
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-800 font-bold"
+                    : "bg-slate-50 hover:bg-white border-slate-200/80 text-slate-700 hover:border-amber-400"
+                }`}
+              >
+                <div className="w-8 h-8 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center shrink-0">
+                  <UserCheck size={16} />
+                </div>
+                <span className="text-xs font-semibold">Chairman's Desk</span>
+              </Link>
+
+              <Link
+                href="/sunrise-anthem"
+                onClick={() => setMoreMenuOpen(false)}
+                className={`p-3 rounded-2xl border flex items-center gap-3 transition-all ${
+                  pathname === "/sunrise-anthem"
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-800 font-bold"
+                    : "bg-slate-50 hover:bg-white border-slate-200/80 text-slate-700 hover:border-amber-400"
+                }`}
+              >
+                <div className="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center shrink-0">
+                  <Music size={16} />
+                </div>
+                <span className="text-xs font-semibold">Sunrise Anthem</span>
+              </Link>
+
+              <Link
+                href="/faq"
+                onClick={() => setMoreMenuOpen(false)}
+                className={`p-3 rounded-2xl border flex items-center gap-3 transition-all ${
+                  pathname === "/faq"
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-800 font-bold"
+                    : "bg-slate-50 hover:bg-white border-slate-200/80 text-slate-700 hover:border-amber-400"
+                }`}
+              >
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+                  <HelpCircle size={16} />
+                </div>
+                <span className="text-xs font-semibold">Admissions FAQ</span>
+              </Link>
+
+              <Link
+                href="/contact"
+                onClick={() => setMoreMenuOpen(false)}
+                className={`p-3 rounded-2xl border flex items-center gap-3 transition-all ${
+                  pathname === "/contact"
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-800 font-bold"
+                    : "bg-slate-50 hover:bg-white border-slate-200/80 text-slate-700 hover:border-amber-400"
+                }`}
+              >
+                <div className="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-600 flex items-center justify-center shrink-0">
+                  <PhoneCall size={16} />
+                </div>
+                <span className="text-xs font-semibold">Contact & Visit</span>
+              </Link>
+
+              <Link
+                href="/enquiry-form"
+                onClick={() => setMoreMenuOpen(false)}
+                className={`p-3 rounded-2xl border flex items-center gap-3 transition-all ${
+                  pathname === "/enquiry-form"
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-800 font-bold"
+                    : "bg-slate-50 hover:bg-white border-slate-200/80 text-slate-700 hover:border-amber-400"
+                }`}
+              >
+                <div className="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <FileText size={16} />
+                </div>
+                <span className="text-xs font-semibold">Enquiry Form</span>
               </Link>
             </div>
 
-            {/* Mobile Nav Links */}
-            <nav className="py-4 flex-grow">
-              <ul className="space-y-1">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = pathname === item.href;
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
-                          isActive
-                            ? "bg-amber-500/15 text-amber-700 font-bold border-l-4 border-amber-500"
-                            : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                        }`}
-                      >
-                        <Icon size={16} className={isActive ? "text-amber-600" : "text-slate-600"} />
-                        <span>{item.label}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-
-            {/* Mobile Footer Info */}
-            <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 space-y-2">
-              <div className="flex items-center gap-2">
-                <Phone size={13} className="text-amber-600" />
+            {/* Quick Contacts and Staff Link */}
+            <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+              <a 
+                href="tel:9324120900"
+                className="flex items-center gap-1.5 font-bold text-amber-700 hover:text-amber-800"
+              >
+                <Phone size={13} />
                 <span>+91 9324120900</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail size={13} className="text-amber-600" />
-                <span className="truncate">sunriseint.school@gmail.com</span>
-              </div>
-              <div className="pt-2">
-                <Link 
-                  href="/admin" 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex items-center gap-1.5 text-xs text-slate-600 hover:text-amber-600 font-medium"
-                >
-                  <Lock size={12} />
-                  <span>Admin Portal</span>
-                </Link>
-              </div>
+              </a>
+
+              <Link 
+                href="/admin" 
+                onClick={() => setMoreMenuOpen(false)}
+                className="inline-flex items-center gap-1 text-slate-500 hover:text-[#0b2240] font-medium"
+              >
+                <Lock size={12} />
+                <span>Staff Portal</span>
+              </Link>
             </div>
+
           </div>
         </div>
       )}
 
-      {/* 4. MAIN PAGE CONTENT RENDER */}
-      <main className="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      {/* 5. MAIN PAGE CONTENT RENDER */}
+      <main className="flex-grow max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 pb-24 xl:pb-12">
         {children}
       </main>
 
@@ -361,54 +454,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
 
-            {/* Column 2: Quick Links (3 cols) */}
-            <div className="lg:col-span-3 space-y-4">
-              <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider relative pb-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-10 after:h-0.5 after:bg-amber-500">
-                Quick Links
-              </h4>
-              <ul className="space-y-2.5 text-sm">
-                <li>
-                  <Link href="/about" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/why-sunrise" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Why Choose Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/chairman-message" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Chairman's Desk
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/sunrise-anthem" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Sunrise Anthem
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/online-admission" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Online Admission
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/gallery" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Campus Gallery
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/faq" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Frequently Asked Questions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-amber-500">›</span> Contact & Directions
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
 
             {/* Column 3: Contact & Campus Info (4 cols) */}
             <div className="lg:col-span-4 space-y-4">
@@ -474,14 +520,11 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         download 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed top-1/2 right-0 z-40 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-display font-extrabold text-[11px] uppercase tracking-widest shadow-school-lg transition-all duration-300 [writing-mode:vertical-rl] rotate-180 translate-y-1/2 rounded-l-xl px-2.5 py-5 select-none flex items-center justify-center gap-2 group border border-amber-400/40"
+        className="hidden md:flex fixed top-1/2 right-0 z-40 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-display font-extrabold text-[11px] uppercase tracking-widest shadow-school-lg transition-all duration-300 [writing-mode:vertical-rl] rotate-180 translate-y-1/2 rounded-l-xl px-2.5 py-5 select-none items-center justify-center gap-2 group border border-amber-400/40"
       >
         <Download size={13} className="rotate-90 group-hover:translate-x-0.5 transition-transform" />
         <span>Download Brochure</span>
       </a>
-
-      {/* Support Live Chat Widget */}
-      <TawkChat />
 
       {/* 7. ADMISSION INQUIRY POPUP MODAL */}
       {modalOpen && (

@@ -161,10 +161,10 @@ export default function AdminDashboard() {
       </section>
 
       {/* TAB SELECTORS */}
-      <section className="flex border-b border-slate-200">
+      <section className="flex border-b border-slate-200 overflow-x-auto no-scrollbar">
         <button
           onClick={() => { setActiveTab("enquiries"); setSearchQuery(""); }}
-          className={`px-6 py-3.5 font-serif font-bold text-sm border-b-2 transition-all flex items-center gap-2 ${
+          className={`px-4 sm:px-6 py-3.5 font-serif font-bold text-xs sm:text-sm border-b-2 transition-all flex items-center gap-2 whitespace-nowrap shrink-0 cursor-pointer ${
             activeTab === "enquiries"
               ? "border-amber-500 text-amber-600 bg-amber-50/30 rounded-t-xl"
               : "border-transparent text-slate-500 hover:text-slate-800"
@@ -175,7 +175,7 @@ export default function AdminDashboard() {
         </button>
         <button
           onClick={() => { setActiveTab("messages"); setSearchQuery(""); }}
-          className={`px-6 py-3.5 font-serif font-bold text-sm border-b-2 transition-all flex items-center gap-2 ${
+          className={`px-4 sm:px-6 py-3.5 font-serif font-bold text-xs sm:text-sm border-b-2 transition-all flex items-center gap-2 whitespace-nowrap shrink-0 cursor-pointer ${
             activeTab === "messages"
               ? "border-amber-500 text-amber-600 bg-amber-50/30 rounded-t-xl"
               : "border-transparent text-slate-500 hover:text-slate-800"

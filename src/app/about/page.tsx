@@ -157,7 +157,7 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 2: CAMPUS FACILITIES */}
-      <section className="space-y-8 bg-white border border-slate-200/80 p-8 sm:p-12 rounded-3xl shadow-school">
+      <section className="space-y-8 bg-white border border-slate-200/80 p-5 sm:p-8 md:p-12 rounded-3xl shadow-school">
         <div className="text-center space-y-2">
           <span className="inline-flex items-center gap-1.5 text-amber-600 font-display font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-md border border-amber-200">
             <Sparkles size={14} />
@@ -172,17 +172,17 @@ export default function AboutPage() {
         </div>
 
         {/* Facilities Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-5">
           {facilities.map((fac, idx) => (
             <div 
               key={idx} 
-              className="bg-slate-50 hover:bg-white hover:shadow-school border border-slate-200/70 hover:border-amber-400/50 rounded-2xl p-5 flex flex-col items-center text-center transition-all duration-300 group hover:-translate-y-1"
+              className="bg-slate-50 hover:bg-white hover:shadow-school border border-slate-200/70 hover:border-amber-400/50 rounded-2xl p-3.5 sm:p-5 flex flex-col items-center text-center transition-all duration-300 group hover:-translate-y-1"
             >
-              <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform shadow-xs">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2.5 sm:mb-3.5 group-hover:scale-110 transition-transform shadow-xs">
                 <img 
                   src={fac.iconUrl} 
                   alt={fac.title} 
-                  className="w-8 h-8 object-contain"
+                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain"
                 />
               </div>
               <h3 className="font-display font-bold text-xs sm:text-sm text-[#0b2240] tracking-tight">

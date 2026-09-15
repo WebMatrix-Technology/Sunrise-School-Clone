@@ -286,7 +286,7 @@ export default function SupportChat() {
   return (
     <>
       {/* FLOATING ACTION BUTTON */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center">
+      <div className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40 flex items-center">
         <button
           onClick={isOpen ? () => setIsOpen(false) : handleOpenChat}
           className={`relative w-14 h-14 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-premium-lg border border-amber-400/20 cursor-pointer ${
@@ -318,7 +318,7 @@ export default function SupportChat() {
 
       {/* CHAT WINDOW CONTAINER */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-40 w-[350px] sm:w-[380px] h-[500px] flex flex-col bg-white/95 backdrop-blur-md rounded-2xl border border-slate-100 shadow-premium-lg animate-in fade-in slide-in-from-bottom-5 duration-200 overflow-hidden">
+        <div className="fixed bottom-20 sm:bottom-24 right-3 sm:right-6 z-50 w-[calc(100vw-24px)] sm:w-[380px] max-w-[380px] h-[480px] sm:h-[500px] flex flex-col bg-white/95 backdrop-blur-md rounded-2xl border border-slate-100 shadow-premium-lg animate-in fade-in slide-in-from-bottom-5 duration-200 overflow-hidden">
           
           {/* HEADER */}
           <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800">

@@ -172,7 +172,7 @@ export default function HomePage() {
       </div>
 
       {/* 2. MAJESTIC SCHOOL HERO CAROUSEL */}
-      <section className="relative h-[440px] md:h-[520px] rounded-3xl overflow-hidden shadow-school-lg group/hero border border-slate-200/80">
+      <section className="relative min-h-[380px] h-[400px] sm:h-[460px] md:h-[520px] rounded-3xl overflow-hidden shadow-school-lg group/hero border border-slate-200/80">
         {carouselItems.map((item, idx) => (
           <div
             key={idx}
@@ -190,33 +190,33 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-radial-gradient from-transparent to-[#07162c]/40" />
             
             {/* Hero Caption */}
-            <div className="relative z-20 p-6 sm:p-10 md:p-14 w-full text-white max-w-4xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
-                <Sparkles size={13} className="text-amber-400" />
+            <div className="relative z-20 p-5 sm:p-10 md:p-14 w-full text-white max-w-4xl">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/40 text-amber-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2.5 sm:mb-3">
+                <Sparkles size={12} className="text-amber-400" />
                 <span>Nourishing Leaders Of Tomorrow</span>
               </div>
               
-              <h1 className="font-display font-black text-3xl sm:text-4xl md:text-6xl mb-3 leading-tight tracking-tight drop-shadow-md">
+              <h1 className="font-display font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-2 sm:mb-3 leading-tight tracking-tight drop-shadow-md">
                 {item.title}
               </h1>
               
               {item.subtitle && (
-                <p className="text-slate-200 text-sm sm:text-base md:text-lg mb-6 max-w-2xl font-medium drop-shadow">
+                <p className="text-slate-200 text-xs sm:text-base md:text-lg mb-4 sm:mb-6 max-w-2xl font-medium drop-shadow line-clamp-2 sm:line-clamp-none">
                   {item.subtitle}
                 </p>
               )}
 
-              <div className="flex flex-wrap items-center gap-3.5">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5">
                 <Link 
-                  href="/enquiry-form"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm rounded-xl shadow-gold hover:shadow-school-lg transition-all duration-200"
+                  href="/online-admission"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm rounded-xl shadow-gold hover:shadow-school-lg transition-all duration-200"
                 >
                   <span>Admission Enquiry</span>
-                  <ArrowRight size={15} />
+                  <ArrowRight size={14} />
                 </Link>
                 <Link 
                   href="/about"
-                  className="inline-flex items-center gap-2 px-5 py-3 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-semibold text-xs sm:text-sm rounded-xl transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-semibold text-xs sm:text-sm rounded-xl transition-all duration-200"
                 >
                   <span>Discover Sunrise</span>
                 </Link>
@@ -242,14 +242,14 @@ export default function HomePage() {
           
           <button
             onClick={() => setActiveSlide(prev => (prev - 1 + carouselItems.length) % carouselItems.length)}
-            className="w-10 h-10 rounded-xl bg-[#0b2240]/80 hover:bg-amber-500 hover:text-slate-950 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all shadow-md"
+            className="hidden sm:flex w-10 h-10 rounded-xl bg-[#0b2240]/80 hover:bg-amber-500 hover:text-slate-950 text-white items-center justify-center backdrop-blur-md border border-white/20 transition-all shadow-md"
             aria-label="Previous Slide"
           >
             <ChevronLeft size={20} />
           </button>
           <button
             onClick={() => setActiveSlide(prev => (prev + 1) % carouselItems.length)}
-            className="w-10 h-10 rounded-xl bg-[#0b2240]/80 hover:bg-amber-500 hover:text-slate-950 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all shadow-md"
+            className="hidden sm:flex w-10 h-10 rounded-xl bg-[#0b2240]/80 hover:bg-amber-500 hover:text-slate-950 text-white items-center justify-center backdrop-blur-md border border-white/20 transition-all shadow-md"
             aria-label="Next Slide"
           >
             <ChevronRight size={20} />
@@ -568,7 +568,11 @@ export default function HomePage() {
           {galleryPreview.map((item, idx) => (
             <div 
               key={idx}
-              className="group relative h-52 rounded-2xl overflow-hidden shadow-school border border-slate-200 bg-slate-950"
+              className={`group relative h-52 rounded-2xl overflow-hidden shadow-school bg-slate-950 ${
+                idx === galleryPreview.length - 1 && galleryPreview.length % 2 !== 0
+                  ? "col-span-2 md:col-span-1"
+                  : ""
+              }`}
             >
               <img 
                 src={item.src} 
